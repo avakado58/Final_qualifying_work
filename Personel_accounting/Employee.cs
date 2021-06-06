@@ -16,7 +16,7 @@ namespace Personel_accounting
         SqlConnection my_conn;
         SqlDataAdapter my_data;
         SqlCommand my_command, Command_1, Command_2, Command_3;
-
+        SqlDataReader sqlDataReader;
         string sls1 = "";
         string sls2 = "";
 
@@ -132,6 +132,11 @@ namespace Personel_accounting
         // Кнопка добавить образование
         private void Add_2_Click(object sender, EventArgs e)
         {
+            AddEducation();
+            add_2.Enabled = false;
+        }
+        private void AddEducation()
+        {
             if (study.Text == "" || diplom.Text == "" || qualification.Text == "") // Проверка правильности введенных исходных данных
             {
                 MessageBox.Show("Проверьте правильность заполнения полей!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); // Вывод сообщения о ошибке
@@ -150,53 +155,104 @@ namespace Personel_accounting
 
                 MessageBox.Show("Операция выполнена!", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information); // Вывод сообщения о добавлении
 
-                add_2.Enabled = false;
+                
             }
         }
-        // Кнопка сохранить об образовании
+        // Кнопка сохранить изменения об образовании
         private void save_2_Click(object sender, EventArgs e)
         {
-            string strQuery = string.Format("UPDATE Образование SET [Учебное заведение] = @param1, Диплом = @param2, [Год окончания] = @param3, Квалификация = @param4 WHERE [Код сотрудника] = {0}", id.Text); // Строка передачи данных
-
-            my_command = new SqlCommand(strQuery, my_conn);
-
+            bool dateExist = false;
+            string strQuery = "select [Код сотрудника] from Образование";
             my_conn.Open();
+            my_command = new SqlCommand(strQuery, my_conn);
+            sqlDataReader = my_command.ExecuteReader();
+            while(sqlDataReader.Read())
+            {
+               if(Convert.ToString(sqlDataReader["Код сотрудника"])==di)
+                {
+                    dateExist = true;
+                    break;
+                }
+            }
+            sqlDataReader.Close();
+            if(dateExist)
+            {
+                strQuery = string.Format("UPDATE Образование SET [Учебное заведение] = @param1, Диплом = @param2, [Год окончания] = @param3, Квалификация = @param4 WHERE [Код сотрудника] = {0}", id.Text); // Строка передачи данных
 
-            // Обновление соответствующих столбцов
-            my_command.Parameters.AddWithValue("@param1", study.Text);
-            my_command.Parameters.AddWithValue("@param2", diplom.Text);
-            my_command.Parameters.AddWithValue("@param3", year.Text);
-            my_command.Parameters.AddWithValue("@param4", qualification.Text);
+                my_command = new SqlCommand(strQuery, my_conn);
 
-            my_command.ExecuteNonQuery();
+
+
+                // Обновление соответствующих столбцов
+                my_command.Parameters.AddWithValue("@param1", study.Text);
+                my_command.Parameters.AddWithValue("@param2", diplom.Text);
+                my_command.Parameters.AddWithValue("@param3", year.Text);
+                my_command.Parameters.AddWithValue("@param4", qualification.Text);
+
+                my_command.ExecuteNonQuery();
+                MessageBox.Show("Операция выполнена!", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information); // Вывод сообщения об обновлении
+            }
+            else
+            {
+                AddEducation();
+            }
+
 
             my_conn.Close();
 
-            MessageBox.Show("Операция выполнена!", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information); // Вывод сообщения об обновлении
+           
         }
         // Сохранить изменения о семье
         private void save_3_Click(object sender, EventArgs e)
         {
-            string strQuery = string.Format("UPDATE Семья SET ФИО = @param1, [Дата рождения] = @param2, [Количество детей] = @param3 WHERE [Код сотрудника] = {0}", id.Text); // Строка передачи данных
-
-            my_command = new SqlCommand(strQuery, my_conn);
-
+            string strQuery = "SELECT [Код сотрудника] FROM Семья";
             my_conn.Open();
+            bool dateExist = false;
+            my_command = new SqlCommand(strQuery, my_conn);
+            sqlDataReader = my_command.ExecuteReader();
+            while(sqlDataReader.Read())
+            {
+                if(Convert.ToString(sqlDataReader["Код сотрудника"])==di)
+                {
+                    dateExist = true;
+                    break;
+                }
+            }
+            sqlDataReader.Close();
+            if(dateExist)
+            {
+                strQuery = string.Format("UPDATE Семья SET ФИО = @param1, [Дата рождения] = @param2, [Количество детей] = @param3 WHERE [Код сотрудника] = {0}", id.Text); // Строка передачи данных
 
-            // Обновление соответствующих столбцов
-            my_command.Parameters.AddWithValue("@param1", FIO_1.Text);
-            my_command.Parameters.AddWithValue("@param2", dateTimePicker2.Value);
-            my_command.Parameters.AddWithValue("@param3", count_kid.Text);
+                my_command = new SqlCommand(strQuery, my_conn);
+                // Обновление соответствующих столбцов
+                my_command.Parameters.AddWithValue("@param1", FIO_1.Text);
+                my_command.Parameters.AddWithValue("@param2", dateTimePicker2.Value);
+                my_command.Parameters.AddWithValue("@param3", count_kid.Text);
 
-            my_command.ExecuteNonQuery();
+                my_command.ExecuteNonQuery();
 
-            my_conn.Close();
+                my_conn.Close();
 
-            MessageBox.Show("Операция выполнена!", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information); // Вывод сообщения об обновлении
+                MessageBox.Show("Операция выполнена!", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information); // Вывод сообщения об обновлении
+            }
+            else
+            {
+                AddFamily();
+            }
+
+            
+
+
+           
         }
 
         // Кнопка добавить семью
         private void Add_3_Click(object sender, EventArgs e)
+        {
+            AddFamily();
+            add_3.Enabled = false;
+        }
+        private void AddFamily()
         {
             if (FIO_1.Text == "" || count_kid.Text == "") // Проверка правильности введенных исходных данных
             {
@@ -216,7 +272,7 @@ namespace Personel_accounting
 
                 MessageBox.Show("Операция выполнена!", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information); // Вывод сообщения о добавлении
 
-                add_3.Enabled = false;
+                
             }
         }
 

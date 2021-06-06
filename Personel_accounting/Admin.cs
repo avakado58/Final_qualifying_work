@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Diagnostics;
-using System.IO;
 
 namespace Personel_accounting
 {
@@ -48,7 +47,7 @@ namespace Personel_accounting
 
             ds = new DataSet(); //Создаем объект класса DataSet
 
-            my_conn = new SqlConnection(form1.connectionString); //Создаем соеденение
+            my_conn = new SqlConnection(form1.connectionString); //Создаем соединение
 
             string sql = "Select p.[Код сотрудника], p.ФИО as [ФИО сотрудника], p.[Дата рождения], p.Адрес, p.[Номер телефона], u.Должность, y.[Семейное положение] " +
                 "FROM Сотрудник as p JOIN Должность as u ON u.[Код должности] = p.[Код должности] JOIN [Семейное положение] as y ON y.[Код положения] = p.[Код положения] ORDER BY [Код сотрудника] ASC"; //Sql запрос (достать все из таблицы ...)

@@ -54,6 +54,9 @@
             this.search = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сментьПарольToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.изменитьТемуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.table)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -72,6 +75,7 @@
             this.данныеToolStripMenuItem,
             this.сервисToolStripMenuItem,
             this.отчетыToolStripMenuItem,
+            this.настройкиToolStripMenuItem,
             this.справкаToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -180,14 +184,14 @@
             // оПрограммеToolStripMenuItem
             // 
             this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
+            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.оПрограммеToolStripMenuItem.Text = "О программе";
             this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem_Click);
             // 
             // помощьToolStripMenuItem
             // 
             this.помощьToolStripMenuItem.Name = "помощьToolStripMenuItem";
-            this.помощьToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
+            this.помощьToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.помощьToolStripMenuItem.Text = "Помощь";
             this.помощьToolStripMenuItem.Click += new System.EventHandler(this.ПомощьToolStripMenuItem_Click);
             // 
@@ -238,7 +242,7 @@
             this.tabPage1.Controls.Add(this.table);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1161, 493);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Данные о  сотрудниках";
@@ -249,7 +253,7 @@
             this.tabPage2.Controls.Add(this.table_1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1161, 493);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Образование";
@@ -275,7 +279,7 @@
             this.tabPage3.Controls.Add(this.table_2);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(1161, 493);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Состав семьи";
@@ -325,6 +329,28 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 207;
             this.pictureBox2.TabStop = false;
+            // 
+            // настройкиToolStripMenuItem
+            // 
+            this.настройкиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.сментьПарольToolStripMenuItem,
+            this.изменитьТемуToolStripMenuItem});
+            this.настройкиToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
+            this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
+            this.настройкиToolStripMenuItem.Text = "Настройки";
+            // 
+            // сментьПарольToolStripMenuItem
+            // 
+            this.сментьПарольToolStripMenuItem.Name = "сментьПарольToolStripMenuItem";
+            this.сментьПарольToolStripMenuItem.Size = new System.Drawing.Size(185, 24);
+            this.сментьПарольToolStripMenuItem.Text = "Сменть пароль";
+            // 
+            // изменитьТемуToolStripMenuItem
+            // 
+            this.изменитьТемуToolStripMenuItem.Name = "изменитьТемуToolStripMenuItem";
+            this.изменитьТемуToolStripMenuItem.Size = new System.Drawing.Size(185, 24);
+            this.изменитьТемуToolStripMenuItem.Text = "Изменить Тему";
             // 
             // Admin
             // 
@@ -385,5 +411,8 @@
         private System.Windows.Forms.ToolStripMenuItem квалификацияToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem увольнениеToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem личнаяКарточкаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem сментьПарольToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem изменитьТемуToolStripMenuItem;
     }
 }

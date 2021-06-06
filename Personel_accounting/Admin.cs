@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace Personel_accounting
 {
@@ -274,10 +275,8 @@ namespace Personel_accounting
 
         private void ПомощьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Открытие нового окна
-            PDF pdf = new PDF();
-            pdf.Owner = this;
-            pdf.ShowDialog();
+            // Открытие PDF файла с руководством пользователя
+            Process.Start(System.AppDomain.CurrentDomain.BaseDirectory + "Помощь.pdf");
         }
 
         // Открытие формы отпуск

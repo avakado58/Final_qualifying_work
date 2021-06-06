@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.IO;
 
 namespace Personel_accounting
 {
@@ -276,7 +277,19 @@ namespace Personel_accounting
         private void ПомощьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Открытие PDF файла с руководством пользователя
-            Process.Start(System.AppDomain.CurrentDomain.BaseDirectory + "Помощь.pdf");
+            try
+            {
+                Process.Start(System.AppDomain.CurrentDomain.BaseDirectory + "User'sManual.pdf");
+            }
+            catch(Win32Exception exep)
+            {
+                MessageBox.Show(exep.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception exep)
+            {
+                MessageBox.Show(exep.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         // Открытие формы отпуск

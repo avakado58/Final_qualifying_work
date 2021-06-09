@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Diagnostics;
@@ -22,18 +18,37 @@ namespace Personel_accounting
         LoginPage form1 = new LoginPage();
 
         public int n;
-        public string di, FIO_employee;
+        public string di, FIO_employee, connectionString;
 
-        public Admin()
+
+        public Admin(string connectionString)
         {
+            this.connectionString = connectionString;
             InitializeComponent();
-
             Loading();
-
             Loading_1();
-
             Loading_2();
+
+            
+            #region подписка на события нажатия кнопок
+            update.Click += Update_Click;
+            addToolStrip.Click += AddToolStrip_Click;
+            this.Load += Admin_Load;
+            this.FormClosed += Admin_FormClosed;
+            delToolStrip.Click += DelToolStrip_Click;
+            search.TextChanged += Search_TextChanged;
+            vacanciesToolStrip.Click += VacanciesToolStrip_Click;
+            qualificationToolStrip.Click += QualificationToolStrip_Click;
+            dismissalToolStripMenu.Click += DismissalToolStripMenu_Click;
+            aboutToolStripMenu.Click += AboutToolStripMenu_Click;
+            cardWordToolStripMenu.Click += CardWordToolStripMenu_Click;
+            helpToolStrip.Click += HelpToolStrip_Click;
+            vacationToolStrip.Click += VacationToolStrip_Click;
+            editToolStrip.Click += EditToolStrip_Click;
+            #endregion
         }
+
+        #region обновление таблиц
         //////////////////////////////////////////////////// ТАБЛИЦА ДАННЫЕ О СОТРУДНИКЕ///////////////////////////////////////////////////////////////////////////////////////////////// 
         public void Loading()
         {
@@ -47,7 +62,7 @@ namespace Personel_accounting
 
             ds = new DataSet(); //Создаем объект класса DataSet
 
-            my_conn = new SqlConnection(form1.connectionString); //Создаем соединение
+            my_conn = new SqlConnection(connectionString); //Создаем соединение
 
             string sql = "Select p.[Код сотрудника], p.ФИО as [ФИО сотрудника], p.[Дата рождения], p.Адрес, p.[Номер телефона], u.Должность, y.[Семейное положение] " +
                 "FROM Сотрудник as p JOIN Должность as u ON u.[Код должности] = p.[Код должности] JOIN [Семейное положение] as y ON y.[Код положения] = p.[Код положения] ORDER BY [Код сотрудника] ASC"; //Sql запрос (достать все из таблицы ...)
@@ -72,7 +87,7 @@ namespace Personel_accounting
 
             ds1 = new DataSet(); //Создаем объект класса DataSet
 
-            my_conn = new SqlConnection(form1.connectionString); //Создаем соеденение
+            my_conn = new SqlConnection(connectionString); //Создаем соединение
 
             string sql = "Select u.ФИО as [ФИО сотрудника], p.[Учебное заведение], p.Диплом, p.[Год окончания], p.Квалификация " +
                 "FROM Образование as p JOIN Сотрудник as u ON u.[Код сотрудника] = p.[Код сотрудника] ORDER BY u.[Код сотрудника] ASC"; //Sql запрос (достать все из таблицы ...)
@@ -97,7 +112,7 @@ namespace Personel_accounting
 
             ds2 = new DataSet(); //Создаем объект класса DataSet
 
-            my_conn = new SqlConnection(form1.connectionString); //Создаем соеденение
+            my_conn = new SqlConnection(connectionString); //Создаем соединение
 
             string sql = "Select u.ФИО as [ФИО сотрудника], p.ФИО as [ФИО супруга/супруги], p.[Дата рождения], p.[Количество детей] " +
                 "FROM Семья as p JOIN Сотрудник as u ON u.[Код сотрудника] = p.[Код сотрудника] ORDER BY u.[Код сотрудника] ASC"; //Sql запрос (достать все из таблицы ...)
@@ -108,16 +123,13 @@ namespace Personel_accounting
 
             table_2.DataSource = ds2.Tables[0].DefaultView;//Заполняем созданный на форме dataGridView1
         }
-        // Открыть форму с добавлением сотрудников
-        private void добавитьToolStripMenuItem_Click(object sender, EventArgs e)
+        #endregion
+        // Завершение работы программы
+        private void Admin_FormClosed(object sender, FormClosedEventArgs e)
         {
-            n = 0;
-
-            di = "";
-            Employee employee = new Employee(n, di); // Открытие новой формы
-            employee.Owner = this;
-            employee.ShowDialog();
+            Application.Exit();
         }
+
         // Автоматическая настройка таблиц по ширине
         private void Admin_Load(object sender, EventArgs e)
         {
@@ -130,13 +142,33 @@ namespace Personel_accounting
             table_2.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells; // Автоматическая высота столбцов
             table_2.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
         }
-        // Завершение работы программы
-        private void Admin_FormClosed(object sender, FormClosedEventArgs e)
+
+        // Открыть форму с добавлением сотрудников
+        private void AddToolStrip_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            n = 0;
+
+            di = "";
+            Employee employee = new Employee(n, di, connectionString); // Открытие новой формы
+            employee.Owner = this;
+            employee.ShowDialog();
         }
+
+        //Обновить таблицы
+        private void Update_Click(object sender, EventArgs e)
+        {
+            Loading();
+
+            Loading_1();
+
+            Loading_2();
+
+        }
+
+
+
         // Удалить сотрудника из базы данных
-        private void УдалитьToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DelToolStrip_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Удалить сотрудника?", "Информация", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
             {
@@ -160,8 +192,9 @@ namespace Personel_accounting
                 MessageBox.Show("Операция выполнена!", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information); // Вывод сообщения об удалении
             }
         }
+
         // Поиск сотрудника по фамилии
-        private void search_TextChanged(object sender, EventArgs e)
+        private void Search_TextChanged(object sender, EventArgs e)
         {
             ds.Tables[0].DefaultView.RowFilter = "[ФИО сотрудника] LIKE '" + search.Text + "%'"; // Критерий поиска
 
@@ -169,15 +202,17 @@ namespace Personel_accounting
 
             ds2.Tables[0].DefaultView.RowFilter = "[ФИО сотрудника] LIKE '" + search.Text + "%'"; // Критерий поиска
         }
+
         // Открыть форму вакансии
-        private void вакансииToolStripMenuItem_Click(object sender, EventArgs e)
+        private void VacanciesToolStrip_Click(object sender, EventArgs e)
         {
             Job_openings job_openings = new Job_openings(); // Открытие новой формы
             job_openings.Owner = this;
             job_openings.ShowDialog();
         }
+
         // Открыть форму квалификация
-        private void квалификацияToolStripMenuItem_Click(object sender, EventArgs e)
+        private void QualificationToolStrip_Click(object sender, EventArgs e)
         {
             int a = table.CurrentRow.Index; // Выделенная строка в таблице
 
@@ -188,8 +223,9 @@ namespace Personel_accounting
             qualifikation.Owner = this;
             qualifikation.ShowDialog();
         }
+
         // открыть форму увольнение
-        private void увольнениеToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DismissalToolStripMenu_Click(object sender, EventArgs e)
         {
             int a = table.CurrentRow.Index; // Выделенная строка в таблице
 
@@ -201,12 +237,13 @@ namespace Personel_accounting
             dismissal.ShowDialog();
         }
 
-        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AboutToolStripMenu_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Данная программа предназначена для кадрового учета!", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information); // Вывод сообщения
         }
+
         // Открыть личную карточку
-        private void личнаяКарточкаToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CardWordToolStripMenu_Click(object sender, EventArgs e)
         {
             try
             {
@@ -216,7 +253,7 @@ namespace Personel_accounting
                 int c;
                 string Rod = "";
                 string dRod = "";
-                if (table_2.CurrentRow!=null)
+                if (table_2.CurrentRow != null)
                 {
                     c = table_2.CurrentRow.Index; // Выделенная строка в таблице
                     Rod = table_2.Rows[c].Cells[1].Value.ToString();
@@ -236,9 +273,9 @@ namespace Personel_accounting
                 string Diplom_n = table_1.Rows[b].Cells[2].Value.ToString();
                 string Diplom_g = table_1.Rows[b].Cells[3].Value.ToString();
                 string Kval = table_1.Rows[b].Cells[4].Value.ToString();
-                
-                
-              
+
+
+
 
                 var wordApp = new Microsoft.Office.Interop.Word.Application();//переменная для word
                 wordApp.Visible = true; // открытие Word
@@ -266,6 +303,7 @@ namespace Personel_accounting
             }
             catch { };
         }
+
         private void ReplaceWordsStub(string stubToReplace, string text, Microsoft.Office.Interop.Word.Document wordDocument)
         {
             var range = wordDocument.Content;//перменная для хранения данных документа
@@ -273,14 +311,14 @@ namespace Personel_accounting
             range.Find.Execute(FindText: stubToReplace, ReplaceWith: text);//находим ключевые слова и заменяем их
         }
 
-        private void ПомощьToolStripMenuItem_Click(object sender, EventArgs e)
+        private void HelpToolStrip_Click(object sender, EventArgs e)
         {
             // Открытие PDF файла с руководством пользователя
             try
             {
                 Process.Start(System.AppDomain.CurrentDomain.BaseDirectory + "User'sManual.pdf");
             }
-            catch(Win32Exception exep)
+            catch (Win32Exception exep)
             {
                 MessageBox.Show(exep.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -288,11 +326,10 @@ namespace Personel_accounting
             {
                 MessageBox.Show(exep.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         // Открытие формы отпуск
-        private void отпускToolStripMenuItem_Click(object sender, EventArgs e)
+        private void VacationToolStrip_Click(object sender, EventArgs e)
         {
             int a = table.CurrentRow.Index; // Выделенная строка в таблице
 
@@ -305,7 +342,7 @@ namespace Personel_accounting
         }
 
         // Открыть окно с редактированием
-        private void РедактироватьToolStripMenuItem_Click(object sender, EventArgs e)
+        private void EditToolStrip_Click(object sender, EventArgs e)
         {
             n = 1;
 
@@ -313,18 +350,10 @@ namespace Personel_accounting
 
             di = Convert.ToString(table.Rows[a].Cells[0].Value);
 
-            Employee employee = new Employee(n, di); // Открытие новой формы
+            Employee employee = new Employee(n, di, connectionString); // Открытие новой формы
             employee.Owner = this;
             employee.ShowDialog();
         }
-        // Кнопка обновить
-        private void update_Click(object sender, EventArgs e)
-        {
-            Loading();
-
-            Loading_1();
-
-            Loading_2();
-        }
+       
     }
 }

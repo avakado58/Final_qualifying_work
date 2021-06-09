@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
@@ -19,19 +13,15 @@ namespace Personel_accounting
         SqlDataReader sqlDataReader;
         string sls1 = "";
         string sls2 = "";
-
-        LoginPage form1 = new LoginPage();
-        public Employee(int n, string di)
+        string connectionString;
+        public Employee(int n, string di, string connectionString)
         {
-            my_conn = new SqlConnection(form1.connectionString); //Создаем соеденение
-
+            this.connectionString = connectionString;
+            my_conn = new SqlConnection(connectionString); //Создаем соеденение
             InitializeComponent();
-
             Loading_1();
-
             this.n = n;
             this.di = di;
-
             id.Text = di;
         }
 
@@ -40,7 +30,7 @@ namespace Personel_accounting
         public void Loading_1()
         {
             // Настройка выпадающего списка должности
-            my_data = new SqlDataAdapter("select * from Должность", form1.connectionString);
+            my_data = new SqlDataAdapter("select * from Должность", connectionString);
 
             DataTable tbl = new DataTable();
 
@@ -51,7 +41,7 @@ namespace Personel_accounting
             post.ValueMember = "Код должности";//столбец с id
 
             // Настройка выпадающего списка семейного положения
-            my_data = new SqlDataAdapter("select * from [Семейное положение]", form1.connectionString);
+            my_data = new SqlDataAdapter("select * from [Семейное положение]", connectionString);
 
             DataTable tb1 = new DataTable();
 
@@ -104,7 +94,7 @@ namespace Personel_accounting
 
                 string commandText = string.Format("INSERT INTO Сотрудник (ФИО, [Дата рождения], Адрес, [Номер телефона], [Код положения], [Код должности]) VALUES ('{0}', '{1:yyyy.MM.dd}', '{2}', '{3}', '{4}', '{5}')", FIO.Text, dateTimePicker1.Value, adress.Text, number.Text, sls1, sls2); // Cтрока передачи данных
 
-                my_conn = new SqlConnection(form1.connectionString); //Создаем соеденение
+                my_conn = new SqlConnection(connectionString); //Создаем соеденение
 
                 my_command = new SqlCommand(commandText, my_conn);
 
@@ -145,7 +135,7 @@ namespace Personel_accounting
             {
                 string commandText = string.Format("INSERT INTO Образование ([Учебное заведение], Диплом, [Год окончания], Квалификация, [Код сотрудника]) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')", study.Text, diplom.Text, year.Text, qualification.Text, id.Text); // Cтрока передачи данных
 
-                my_conn = new SqlConnection(form1.connectionString); //Создаем соеденение
+                my_conn = new SqlConnection(connectionString); //Создаем соеденение
 
                 my_command = new SqlCommand(commandText, my_conn);
 
@@ -262,7 +252,7 @@ namespace Personel_accounting
             {
                 string commandText = string.Format("INSERT INTO Семья (ФИО, [Дата рождения], [Количество детей], [Код сотрудника]) VALUES ('{0}', '{1:yyyy.MM.dd}', '{2}', '{3}')", FIO_1.Text, dateTimePicker2.Value, count_kid.Text, id.Text); // Cтрока передачи данных
 
-                my_conn = new SqlConnection(form1.connectionString); //Создаем соеденение
+                my_conn = new SqlConnection(connectionString); //Создаем соеденение
 
                 my_command = new SqlCommand(commandText, my_conn);
 

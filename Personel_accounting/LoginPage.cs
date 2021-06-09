@@ -25,7 +25,7 @@ namespace Personel_accounting
         {
             if (login.Text == "Admin" && password.Text == "admin")
             {
-                Admin a = new Admin();
+                Admin a = new Admin(connectionString);
                 this.Hide();
                 a.ShowDialog();
                 this.Show();

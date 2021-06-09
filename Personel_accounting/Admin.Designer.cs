@@ -57,6 +57,7 @@
             this.search = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.table)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -251,6 +252,7 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.table);
+            this.tabPage1.Controls.Add(this.menuStrip2);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -340,6 +342,14 @@
             this.pictureBox2.TabIndex = 207;
             this.pictureBox2.TabStop = false;
             // 
+            // menuStrip2
+            // 
+            this.menuStrip2.Location = new System.Drawing.Point(3, 3);
+            this.menuStrip2.Name = "menuStrip2";
+            this.menuStrip2.Size = new System.Drawing.Size(1155, 24);
+            this.menuStrip2.TabIndex = 201;
+            this.menuStrip2.Text = "menuStrip2";
+            // 
             // Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -351,6 +361,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.update);
             this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip2;
             this.Name = "Admin";
             this.Text = "Отдел кадров ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -360,6 +371,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.table)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.table_1)).EndInit();
             this.tabPage3.ResumeLayout(false);
@@ -401,5 +413,6 @@
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenu;
         private System.Windows.Forms.ToolStripMenuItem changeDesignToolStripMenu;
+        private System.Windows.Forms.MenuStrip menuStrip2;
     }
 }

@@ -119,7 +119,7 @@
             this.save_1.TabIndex = 203;
             this.save_1.Text = "Сохранить";
             this.save_1.UseVisualStyleBackColor = false;
-            this.save_1.Click += new System.EventHandler(this.save_1_Click);
+
             // 
             // add_1
             // 
@@ -132,7 +132,7 @@
             this.add_1.TabIndex = 202;
             this.add_1.Text = "Добавить";
             this.add_1.UseVisualStyleBackColor = false;
-            this.add_1.Click += new System.EventHandler(this.add_Click);
+
             // 
             // post
             // 
@@ -286,7 +286,7 @@
             this.save_2.TabIndex = 205;
             this.save_2.Text = "Сохранить";
             this.save_2.UseVisualStyleBackColor = false;
-            this.save_2.Click += new System.EventHandler(this.save_2_Click);
+
             // 
             // add_2
             // 
@@ -409,7 +409,7 @@
             this.save_3.TabIndex = 207;
             this.save_3.Text = "Сохранить";
             this.save_3.UseVisualStyleBackColor = false;
-            this.save_3.Click += new System.EventHandler(this.save_3_Click);
+
             // 
             // add_3
             // 

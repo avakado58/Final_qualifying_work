@@ -45,7 +45,25 @@ namespace Personel_accounting
             helpToolStrip.Click += HelpToolStrip_Click;
             vacationToolStrip.Click += VacationToolStrip_Click;
             editToolStrip.Click += EditToolStrip_Click;
+            changePasswordToolStripMenu.Click += ChangePasswordToolStripMenu_Click;
+            table.DoubleClick += Table_DoubleClick;
             #endregion
+        }
+
+        private void Table_DoubleClick(object sender, EventArgs e)
+        {
+            int i = table.CurrentRow.Index;
+            BigVue bigVue = new BigVue(Convert.ToInt32( table.Rows[i].Cells[0].Value));
+            bigVue.Owner = this;
+            bigVue.Show();
+            
+        }
+
+        private void ChangePasswordToolStripMenu_Click(object sender, EventArgs e)
+        {
+            ChangePassword changePassword = new ChangePassword();
+            changePassword.Owner = this;
+            changePassword.ShowDialog();
         }
 
         #region обновление таблиц

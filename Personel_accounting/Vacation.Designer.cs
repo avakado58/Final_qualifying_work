@@ -73,7 +73,7 @@
             this.delete.TabIndex = 203;
             this.delete.Text = "Удалить";
             this.delete.UseVisualStyleBackColor = false;
-            this.delete.Click += new System.EventHandler(this.delete_Click);
+            this.delete.Click += new System.EventHandler(this.Delete_Click);
             // 
             // save
             // 
@@ -86,7 +86,7 @@
             this.save.TabIndex = 204;
             this.save.Text = "Сохранить";
             this.save.UseVisualStyleBackColor = false;
-            this.save.Click += new System.EventHandler(this.save_Click);
+            this.save.Click += new System.EventHandler(this.Save_Click);
             // 
             // add
             // 
@@ -99,7 +99,7 @@
             this.add.TabIndex = 202;
             this.add.Text = "Добавить";
             this.add.UseVisualStyleBackColor = false;
-            this.add.Click += new System.EventHandler(this.add_Click);
+            this.add.Click += new System.EventHandler(this.Add_Click);
             // 
             // vacations
             // 
@@ -214,7 +214,7 @@
             this.show.TabIndex = 215;
             this.show.Text = "Показать на дату начала отпуска";
             this.show.UseVisualStyleBackColor = false;
-            this.show.Click += new System.EventHandler(this.show_Click);
+            this.show.Click += new System.EventHandler(this.Show_Click);
             // 
             // back
             // 
@@ -227,7 +227,7 @@
             this.back.TabIndex = 216;
             this.back.Text = "Назад";
             this.back.UseVisualStyleBackColor = false;
-            this.back.Click += new System.EventHandler(this.back_Click);
+            this.back.Click += new System.EventHandler(this.Back_Click);
             // 
             // Vacation
             // 

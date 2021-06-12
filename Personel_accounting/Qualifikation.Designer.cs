@@ -119,7 +119,7 @@
             this.delete.TabIndex = 215;
             this.delete.Text = "Удалить";
             this.delete.UseVisualStyleBackColor = false;
-            this.delete.Click += new System.EventHandler(this.delete_Click);
+            this.delete.Click += new System.EventHandler(this.Delete_Click);
             // 
             // save
             // 
@@ -132,7 +132,7 @@
             this.save.TabIndex = 216;
             this.save.Text = "Сохранить";
             this.save.UseVisualStyleBackColor = false;
-            this.save.Click += new System.EventHandler(this.save_Click);
+            this.save.Click += new System.EventHandler(this.Save_Click);
             // 
             // add
             // 

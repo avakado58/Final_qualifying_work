@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Personel_accounting.Admin">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gQCAAAgABWAYwRlAMAiCBbACJgQEgBAEMGBCAAC3RIA=</HashCode>
+      <FileName>Admin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personel_accounting.Employee">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>8piFAAIIQCAQYBoGABCAABQCAEQUAAgYECBAAiABRgA=</HashCode>
+      <FileName>Employee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personel_accounting.Dismissal" Collapsed="true">
+    <Position X="13.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CgABAAAAACAYQBBCAgiAAJACIAAEAAAAACACAAACggA=</HashCode>
+      <FileName>Dismissal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personel_accounting.ChangePassword" Collapsed="true">
+    <Position X="13.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAKAAAAAAAACAAAAKSAAAAIAAAAAAQEEAAAA=</HashCode>
+      <FileName>ChangePassword.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personel_accounting.BigVue">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAEAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BigVue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personel_accounting.Job_openings">
+    <Position X="9" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAACAQABBCAACAAZACIAAEBAgAAAACAAACgAA=</HashCode>
+      <FileName>JobOpenings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personel_accounting.LoginPage">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAABAAAKAAAAgABACAAAACAACAAAAAAAAAEgFAEAA=</HashCode>
+      <FileName>LoginPage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personel_accounting.Program">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personel_accounting.Qualifikation">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgQBAAAAACCQABBiAgiCAZACJAAEAAAAACACAAACggA=</HashCode>
+      <FileName>Qualifikation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personel_accounting.SerializeFunctions" Collapsed="true">
+    <Position X="13.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>SerializeFunctions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personel_accounting.Token" Collapsed="true">
+    <Position X="13.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAEAA=</HashCode>
+      <FileName>Token.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personel_accounting.Vacation" Collapsed="true">
+    <Position X="13.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AhAIAAEAACCQABBCAAiEAZACIAgEBAAABAACAAACygA=</HashCode>
+      <FileName>Vacation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

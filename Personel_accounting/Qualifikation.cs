@@ -19,6 +19,7 @@ namespace Personel_accounting
         SqlCommand my_command;
 
         LoginPage form1 = new LoginPage();
+        string di, FIO_employee;
         public Qualifikation(string di, string FIO_employee)
         {
             InitializeComponent();
@@ -28,7 +29,7 @@ namespace Personel_accounting
 
             Loading();
         }
-        string di, FIO_employee;
+        
         // кнопка добавить
         private void add_Click(object sender, EventArgs e)
         {
@@ -62,7 +63,7 @@ namespace Personel_accounting
             table.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
         }
         // удалить квалификацию
-        private void delete_Click(object sender, EventArgs e)
+        private void Delete_Click(object sender, EventArgs e)
         {
             int a = table.CurrentRow.Index; // Выделенная строка в таблице
 
@@ -83,7 +84,7 @@ namespace Personel_accounting
             MessageBox.Show("Операция выполнена!", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information); // Вывод сообщения об удалении
         }
         // сохранить изменения
-        private void save_Click(object sender, EventArgs e)
+        private void Save_Click(object sender, EventArgs e)
         {
             int a = table.CurrentRow.Index; // Выделенная строка в таблице
 

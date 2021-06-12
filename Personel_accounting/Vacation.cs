@@ -19,7 +19,7 @@ namespace Personel_accounting
         SqlCommand my_command;
 
         LoginPage form1 = new LoginPage();
-
+        string di, FIO_employee;
         string sls1 = "";
         public Vacation(string di, string FIO_employee)
         {
@@ -30,7 +30,7 @@ namespace Personel_accounting
 
             Loading();
         }
-        string di, FIO_employee;
+        
         public void Loading()
         {
             id.Text = di;
@@ -74,12 +74,12 @@ namespace Personel_accounting
             vacations.ValueMember = "Код вида отпуска";//столбец с id
         }
         // Кнопка назад
-        private void back_Click(object sender, EventArgs e)
+        private void Back_Click(object sender, EventArgs e)
         {
             Loading();
         }
         // Кнопка удалить
-        private void delete_Click(object sender, EventArgs e)
+        private void Delete_Click(object sender, EventArgs e)
         {
             int a = table.CurrentRow.Index; // Выделенная строка в таблице
 
@@ -100,7 +100,7 @@ namespace Personel_accounting
             MessageBox.Show("Операция выполнена!", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information); // Вывод сообщения об удалении
         }
         // Кнопка сохранить изменения
-        private void save_Click(object sender, EventArgs e)
+        private void Save_Click(object sender, EventArgs e)
         {
             int a = table.CurrentRow.Index; // Выделенная строка в таблице
 
@@ -124,7 +124,7 @@ namespace Personel_accounting
             MessageBox.Show("Операция выполнена!", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information); // Вывод сообщения об обновлении
         }
         // Показать на дату начала отпуска
-        private void show_Click(object sender, EventArgs e)
+        private void Show_Click(object sender, EventArgs e)
         {
             ds = new DataSet(); //Создаем объект класса DataSet
 
@@ -141,7 +141,7 @@ namespace Personel_accounting
         }
         
         // Кнопка добавить отпуск
-        private void add_Click(object sender, EventArgs e)
+        private void Add_Click(object sender, EventArgs e)
         {
             if (FIO.Text == "" || id.Text == "") // Проверка правильности введенных исходных данных
             {
